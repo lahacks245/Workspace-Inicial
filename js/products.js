@@ -47,6 +47,3 @@ function showProductsList(array){
     }
     
 }
-y aca lo que hice fue que cuando se cargue la pagina,con la funcion de addEventListener obtengo los datos de json mediante la funcion de getJSONData,la 
-cual está definida en el init , y si todo esta ok me ejecuta la funcion showProductsList,la cual mediante innerHTML ingresa texto HTML a el products html 
-y lo inserta en el DIV con el id LISTADO que cree anteriormente
