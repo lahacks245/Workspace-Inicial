@@ -20,33 +20,27 @@
   <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/album/">
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
   <!-- Bootstrap core CSS -->
-  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <!--<link href="css/bootstrap.min.css" rel="stylesheet">-->
   <link href="css/login.css" rel="stylesheet">
   
   
   <body class="text-center">
     
-    <div class=imagen ><img src="img/logoceibal.png" width = "auto" height = "200px" /></div> 
-
+    <div class="centro">
+    <div class="img"><img src="img/login2.png" width = "auto" height = "200px" /> </div>
     <div class="login">
       
-      <h1>Iniciar sesión</h1>
+      <h1>Iniciar sesión</h1><br>
         <div>  
-            <input type="text" id="user" name="user" placeholder="Usuario" required="required" /><br>
+            <input type="text" id="user" name="user" placeholder="Usuario" required="required" />
             <input type="password"  minlength="8" id="pass" name="pass" placeholder="Contraseña" required="required" /><br>
-            <span id="msj"></span><br>
-            <button id="login" class="btn btn-primary btn-block btn-large" onclick="verificar()">Ingresar</button>
-            <div class=row>
-              
-                <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
-               
-             
-            
-            </div>
-        
-        
+            <span id="msj"> </span><br>
+            <button id="login" class="btn btn-primary btn-block btn-large" onclick="verificar()">Ingresar</button><br><br>
+            <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark" data-width="300" data-longtitle="true"> </div> 
           </div>
+
     
+    </div>
     </div>
     
 
