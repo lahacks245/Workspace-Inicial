@@ -30,11 +30,7 @@ document.addEventListener("DOMContentLoaded", function(e){
         }
     }
 
-    function desconectar(){
-        localStorage.clear(); // limpieza
-       
-        location.href = "#";
-    }
+   
 
     function onLoad(){
         gapi.load('auth2', function(){
