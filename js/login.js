@@ -47,8 +47,12 @@ document.addEventListener("DOMContentLoaded", function(e){
     function onSignIn(googleUser) {
       // Useful data for your client-side scripts:
       var profile = googleUser.getBasicProfile();
-     
+      let usuario = {};
+      usuario.nombre = profile.getName();
+      usuario.estado = "Conectado";
 
+      localStorage.setItem('usuario',JSON.stringify(usuario));
+      sessionStorage.setItem('usuario',JSON.stringify(usuario));
       // The ID token you need to pass to your backend:
       var id_token = googleUser.getAuthResponse().id_token;
       console.log("ID Token: " + id_token);

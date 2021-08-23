@@ -41,7 +41,7 @@ var getJSONData = function(url){
 }
 function desconectar(){
   localStorage.clear(); // limpieza
- 
+  
   location.href = "login.html";
 }
 //Función que se ejecuta una vez que se haya lanzado el evento de
