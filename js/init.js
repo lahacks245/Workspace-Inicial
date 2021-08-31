@@ -63,7 +63,12 @@ let usuario = JSON.parse(localStorage.getItem("usuario"))
 if(localStorage.getItem("usuario") == null ){
   location.href="login.html"
 }
-
+let user = JSON.parse(localStorage.getItem('usuario'))
+document.getElementById('nombreusr').innerHTML +=  user.nombre 
 
 
 });
+
+
+
+

@@ -30,7 +30,11 @@ document.addEventListener("DOMContentLoaded", function(e){
         }
     }
 
-   
+   document.addEventListener("keypress",(event)=>{
+       if(event.code=="Enter"){
+           verificar();
+       }
+   })
 
     
 
