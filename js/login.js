@@ -1,6 +1,16 @@
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
+
+function prueba(){
+    Swal.fire({
+        title: 'Error',
+        text: 'Los campos "Usuario" y "Contraseña" no pueden estár vacíos',
+        icon: 'error',
+        confirmButtonText: 'Entendido!'
+      })
+}
+
 document.addEventListener("DOMContentLoaded", function(e){
 
 
@@ -13,9 +23,9 @@ document.addEventListener("DOMContentLoaded", function(e){
         let usuario = {};
        
         if ( user.value.trim() ==='' || pass.value.trim()==='' ){
-
+            prueba()
             user.classList.add("notValid"); 
-            msj.innerHTML="Dato requerido";
+            pass.classList.add("notValid")
             msj.classList.add("notValid");            
         }
         else{
@@ -54,4 +64,4 @@ document.addEventListener("DOMContentLoaded", function(e){
       location.href="index.html"
     }
   
-    
+   
