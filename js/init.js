@@ -67,6 +67,13 @@ let user = JSON.parse(localStorage.getItem('usuario'))
 document.getElementById('nombreusr').innerHTML +=  user.nombre 
 
 
+
+
+
+
+
+
+
 });
 
 
