@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function(e){
         let pass = document.getElementById("pass");
         let msj = document.getElementById ("msj");
         let usuario = {};
-       
+        let img = {} ;
         if ( user.value.trim() ==='' || pass.value.trim()==='' ){
             prueba()
             user.classList.add("notValid"); 
@@ -34,6 +34,7 @@ document.addEventListener("DOMContentLoaded", function(e){
 
             usuario.nombre = user.value;
             usuario.estado = "Conectado";
+           
 
             localStorage.setItem('usuario',JSON.stringify(usuario));
             sessionStorage.setItem('usuario',JSON.stringify(usuario));
@@ -55,6 +56,7 @@ document.addEventListener("DOMContentLoaded", function(e){
       let usuario = {};
       usuario.nombre = profile.getName();
       usuario.estado = "Conectado";
+      usuario.img = profile.getImageUrl();
 
       localStorage.setItem('usuario',JSON.stringify(usuario));
       sessionStorage.setItem('usuario',JSON.stringify(usuario));

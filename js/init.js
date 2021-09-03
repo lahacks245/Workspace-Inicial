@@ -66,7 +66,13 @@ if(localStorage.getItem("usuario") == null ){
 let user = JSON.parse(localStorage.getItem('usuario'))
 document.getElementById('nombreusr').innerHTML +=  user.nombre 
 
-
+if (usuario.img != undefined) {
+  document.getElementById("nombreusr").innerHTML =
+    `<img src="${usuario.img}" referrerpolicy="no-referrer" style="width: 25px;"> `+ ` ` + usuario.nombre;
+} else {
+  document.getElementById("nombreusr").innerHTML =
+    `<i class="fas fa-user">  </i>` + ` ` + usuario.nombre;
+}
 
 
 
