@@ -66,7 +66,9 @@ function showProductsList(array) {
                     </div>
                     <p class=  "mb-1"  >` +
         producto.description +
-        `</p> 
+
+        `</p>
+        <p class ="text-muted"> <b>Vendidos ` + producto.soldCount + ` </b> </p>
 
                 </div>
             </div>
@@ -76,8 +78,9 @@ function showProductsList(array) {
         `
         ;
 
-      document.getElementById("listado").innerHTML = htmlContentToAppend;
+      
     }
+    document.getElementById("listado").innerHTML = htmlContentToAppend;
   }
 }
 function sortAndShowProducts(sortCriteria, prodArray) {
