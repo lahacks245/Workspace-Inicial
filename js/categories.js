@@ -5,7 +5,7 @@ var currentCategoriesArray = [];
 var currentSortCriteria = undefined;
 var minCount = undefined;
 var maxCount = undefined;
-
+var filteredProducts = [];
 function sortCategories(criteria, array){
     let result = [];
     if (criteria === ORDER_ASC_BY_NAME)
@@ -35,11 +35,11 @@ function sortCategories(criteria, array){
     return result;
 }
 
-function showCategoriesList(){
+function showCategoriesList(array){
 
     let htmlContentToAppend = "";
-    for(let i = 0; i < currentCategoriesArray.length; i++){
-        let category = currentCategoriesArray[i];
+    for(let i = 0; i < array.length; i++){
+        let category = array[i];
 
         if (((minCount == undefined) || (minCount != undefined && parseInt(category.productCount) >= minCount)) &&
             ((maxCount == undefined) || (maxCount != undefined && parseInt(category.productCount) <= maxCount))){
@@ -62,8 +62,9 @@ function showCategoriesList(){
             `
         }
 
-        document.getElementById("cat-list-container").innerHTML = htmlContentToAppend;
+        
     }
+    document.getElementById("cat-list-container").innerHTML = htmlContentToAppend;
 }
 
 function sortAndShowCategories(sortCriteria, categoriesArray){
@@ -76,7 +77,7 @@ function sortAndShowCategories(sortCriteria, categoriesArray){
     currentCategoriesArray = sortCategories(currentSortCriteria, currentCategoriesArray);
 
     //Muestro las categorías ordenadas
-    showCategoriesList();
+    showCategoriesList(currentCategoriesArray);
 }
 
 //Función que se ejecuta una vez que se haya lanzado el evento de
@@ -88,6 +89,20 @@ document.addEventListener("DOMContentLoaded", function(e){
             sortAndShowCategories(ORDER_ASC_BY_NAME, resultObj.data);
         }
     });
+
+    document.getElementById("campo").addEventListener("keyup", () => {
+        buscar();
+      });
+    
+      document.getElementById("campo").addEventListener("mouseover", () => {
+        buscar();
+      });
+    
+
+
+
+
+
 
     document.getElementById("sortAsc").addEventListener("click", function(){
         sortAndShowCategories(ORDER_ASC_BY_NAME);
@@ -108,7 +123,7 @@ document.addEventListener("DOMContentLoaded", function(e){
         minCount = undefined;
         maxCount = undefined;
 
-        showCategoriesList();
+        showCategoriesList(currentCategoriesArray);
     });
 
     document.getElementById("rangeFilterCount").addEventListener("click", function(){
@@ -131,6 +146,16 @@ document.addEventListener("DOMContentLoaded", function(e){
             maxCount = undefined;
         }
 
-        showCategoriesList();
+        showCategoriesList(currentCategoriesArray);
     });
 });
+
+function buscar() {
+    let busqueda = document.getElementById("campo").value;
+  
+    filteredProducts=currentCategoriesArray.filter((product) => {
+      return (product.name.toLowerCase().indexOf(busqueda.toLowerCase()) >= 0);
+    });
+    showCategoriesList(filteredProducts);
+  }
+  
