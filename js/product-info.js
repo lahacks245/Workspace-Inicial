@@ -1,35 +1,83 @@
 let product = {};
+let productInfo = [];
+let productsArray = [];
 let usuario = JSON.parse(localStorage.getItem("usuario"));
-const showImagesGallery = (array) => {
+
+
+function showImagesGallery(array)  {
   let htmlContentToAppend = "";
-  for (let i = 0; i < array.length; i++) {
-    let imageSrc = array[i];
+  
+    
 
     htmlContentToAppend +=
       `
-    <div  class="col-lg-3 col-md-4 ">
-      <div class="d-block mb-4 h-100">
-        <img  class="img-fluid img-thumbnail" src="` +
-      imageSrc +
-      `" alt="">
+      <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+      <ol class="carousel-indicators">
+        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
+      
+      </ol>
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img class="d-block w-100" src="` +
+          array[0] +
+          `" alt="First slide">
+        </div>
+        <div class="carousel-item">
+          <img class="d-block w-100" src="` +
+          array[1] +
+          `" alt="Second slide">
+        </div>
+        <div class="carousel-item">
+          <img class="d-block w-100" src="` +
+          array[2] +
+          `" alt="Third slide">
+        </div>
+        <div class="carousel-item">
+          <img class="d-block w-100" src="` +
+          array[3] +
+          `" alt="Third slide">
+        </div>
+        <div class="carousel-item">
+          <img class="d-block w-100" src="` +
+          array[4] +
+          `" alt="Third slide">
+        </div>
       </div>
+      
+      <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
     </div>
     `;
-  }
+  
   document.getElementById("productsImagesWrapper").innerHTML =
     htmlContentToAppend;
 };
 
 
-function publicada(){
-  Swal.fire({
-      title: 'Enviada!',
-      text: 'Tu opinión fue enviada con éxito!',
-      icon: 'success',
-      confirmButtonText: 'Entendido!'
-    })
-}
 
+
+
+
+
+
+function publicada() {
+  Swal.fire({
+    title: "Enviada!",
+    text: "Tu opinión fue enviada con éxito!",
+    icon: "success",
+    confirmButtonText: "Entendido!",
+  });
+}
 
 function showStars(param) {
   let estrellita = "";
@@ -93,8 +141,8 @@ function agregarComentario() {
     }
   });
 
-  document.getElementById("comentario").value = "";
-  publicada()
+  document.getElementById("comentario").value = ""; 
+  publicada();
 }
 
 function cancelarComen() {
@@ -120,7 +168,7 @@ const showReviews = (productInfo) => {
       `
         </div>
       </div>
-            <p class="pt-2">${product.description}</p>
+            <p  class="pt-2">${product.description}</p>
             <p class="text-right">${product.dateTime}</p>
             <hr>
     </div>
@@ -129,40 +177,96 @@ const showReviews = (productInfo) => {
   document.getElementById("cajaComentarios").innerHTML =
     reviewsHtmlContentToAppend;
 };
+
+const showRelatedProducts = (relatedProductsArray) => {
+  getJSONData(PRODUCTS_URL).then((resObj) => {
+    let relatedProductsHtmlToAppend = "";
+    if (resObj.status === "ok") {
+      let allProducts = resObj.data;
+      for (let i = 0; i < relatedProductsArray.length; i++) {
+        let relatedProductPosition = relatedProductsArray[i];
+        let related = allProducts[relatedProductPosition];
+
+        relatedProductsHtmlToAppend += `
+     
+<div class="gallery" onclick="location.href = 'products.html';">
+<a target="_blank" href="products.html">
+  <img src="${related.imgSrc}">
+</a>
+<div class="desc"><h5><b>${related.name}</b></h5></div>
+    <div class="desc">${related.description}</div>
+
+</div>
+
+  
+          `;
+      }
+    }
+    document.getElementById("relatedProductContainer").innerHTML =
+      relatedProductsHtmlToAppend;
+  });
+};
+
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
 
+document.addEventListener("DOMContentLoaded", function (e) {
+  getJSONData(PRODUCT_INFO_URL).then((resObj) => {
+    if (resObj.status === "ok") {
+      let product = resObj.data;
+      getJSONData(PRODUCTS_URL).then(function (resultObj) {
+        let htmlContentToAppend = "";
+        if (resultObj.status === "ok") {
+          productsArray = resultObj.data;
+        }
+        for (product of productInfo.relatedProducts) {
+          htmlContentToAppend +=
+            `
+              <div class="gallery" onclick="location.href = 'products.html';">
+          <a target="_blank" href="products.html">
+            <img src="` +
+            productsArray[product].imgSrc +
+            `">
+          </a>
+          <div class="desc"><h5><b>` +
+            productsArray[product].name +
+            `</b></h5></div>
+              <div class="desc">` +
+            productsArray[product].description +
+            `</div>
   
+        </div>
+              `;
+        }
+        document.getElementById("relatedProductContainer").innerHTML =
+          htmlContentToAppend;
+      });
 
- 
-  document.addEventListener("DOMContentLoaded", function (e) {
-    getJSONData(PRODUCT_INFO_URL).then((resObj) => {
-      if (resObj.status === "ok") {
-        let product = resObj.data;
-        //console.log(product);
-  
-        let productNameHTML = document.getElementById("productName");
-        let productDescriptionHTML =
-          document.getElementById("productDescription");
-        let productCostHTML = document.getElementById("productCost");
-        let productCurrencyHTML = document.getElementById("productCurrency");
-        let productSoldCountHTML = document.getElementById("productSoldCount");
-        let productCategoryHTML = document.getElementById("productCategory");
-  
-        productNameHTML.innerHTML = product.name;
-        productDescriptionHTML.innerHTML = product.description;
-        productCostHTML.innerHTML = product.cost;
-        productCurrencyHTML.innerHTML = product.currency;
-        productSoldCountHTML.innerHTML = product.soldCount;
-        productCategoryHTML.innerHTML = product.category;
-  
-        showImagesGallery(product.images);
-      }
-    });
-    getJSONData(PRODUCT_INFO_COMMENTS_URL).then((resultObj) => {
-      let productComments = resultObj.data;
-      console.log(productComments);
-      showReviews(productComments);
-    });
+      //console.log(product);
+
+      let productNameHTML = document.getElementById("productName");
+      let productDescriptionHTML =
+        document.getElementById("productDescription");
+      let productCostHTML = document.getElementById("productCost");
+      let productCurrencyHTML = document.getElementById("productCurrency");
+      let productSoldCountHTML = document.getElementById("productSoldCount");
+      let productCategoryHTML = document.getElementById("productCategory");
+
+      productNameHTML.innerHTML = product.name;
+      productDescriptionHTML.innerHTML = product.description;
+      productCostHTML.innerHTML = product.cost;
+      productCurrencyHTML.innerHTML = product.currency;
+      productSoldCountHTML.innerHTML = product.soldCount;
+      productCategoryHTML.innerHTML = product.category;
+
+      showImagesGallery(product.images);
+      showRelatedProducts(product.relatedProducts);
+    }
   });
+  getJSONData(PRODUCT_INFO_COMMENTS_URL).then((resultObj) => {
+    let productComments = resultObj.data;
+    console.log(productComments);
+    showReviews(productComments);
+  });
+});
