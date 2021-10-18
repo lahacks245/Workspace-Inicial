@@ -7,18 +7,6 @@ var currentSortCriteria = undefined;
 var minCount = undefined;
 var maxCount = undefined;
 document.addEventListener("DOMContentLoaded", function (e) {
-
-  
-  
-  
-  
-  
-
-
-
-
-
-
   getJSONData(PRODUCTS_URL).then(function (resultObj) {
     if (resultObj.status === "ok") {
       productsArray = resultObj.data;
@@ -28,7 +16,6 @@ document.addEventListener("DOMContentLoaded", function (e) {
   });
   sortAsc;
 
-
   document.getElementById("campo").addEventListener("keyup", () => {
     buscar();
   });
@@ -36,11 +23,6 @@ document.addEventListener("DOMContentLoaded", function (e) {
   document.getElementById("campo").addEventListener("mouseover", () => {
     buscar();
   });
-
-
-
-
-
 
   document.getElementById("sortAsc").addEventListener("click", function () {
     sortAndShowProducts(ORDER_ASC_BY_PRECIO);
@@ -94,24 +76,20 @@ function showProductsList(array) {
                     </div>
                     <p class=  "mb-1"  >` +
         producto.description +
-
         `</p>
-        <p class ="text-muted"> <b>Vendidos ` + producto.soldCount + ` </b> </p>
+        <p class ="text-muted"> <b>Vendidos ` +
+        producto.soldCount +
+        ` </b> </p>
 
                 </div>
             </div>
             
         </div>
         </a>
-        `
-        ;
-
-      
+        `;
     }
-    
   }
   document.getElementById("listado").innerHTML = htmlContentToAppend;
-
 }
 function sortAndShowProducts(sortCriteria, prodArray) {
   currentSortCriteria = sortCriteria;
@@ -126,22 +104,14 @@ function sortAndShowProducts(sortCriteria, prodArray) {
   showProductsList(productsArray);
 }
 
-
-
 function buscar() {
   let busqueda = document.getElementById("campo").value;
 
-  filteredProducts=productsArray.filter((product) => {
-    return (product.name.toLowerCase().indexOf(busqueda.toLowerCase()) >= 0);
+  filteredProducts = productsArray.filter((product) => {
+    return product.name.toLowerCase().indexOf(busqueda.toLowerCase()) >= 0;
   });
   showProductsList(filteredProducts);
 }
-
-
-
-
-
-
 
 function sortProducts(criteria, array) {
   let result = [];

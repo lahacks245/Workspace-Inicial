@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0049)https://getbootstrap.com/docs/4.3/examples/album/ -->
+
 <html lang="en">
 
 <head>
@@ -8,11 +8,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="google-signin-scope" content="profile email">
-    <meta name="google-signin-client_id" content="598903154388-sm9cm7ngn4d06srb0c6e9brh6bhs8m6t.apps.googleusercontent.com">
+  <meta name="google-signin-client_id"
+    content="598903154388-sm9cm7ngn4d06srb0c6e9brh6bhs8m6t.apps.googleusercontent.com">
   <title>eMercado - Todo lo que busques está aquí</title>
   <link href="css/font-awesome.min.css" rel="stylesheet" />
   <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/album/">
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"">
+	<link href=" https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  <link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+/>
 
   <style>
     .bd-placeholder-img {
@@ -37,51 +45,108 @@
 
 <body>
   <nav class="site-header sticky-top py-1 bg-dark">
-    <div
-      class="container d-flex flex-column flex-md-row justify-content-between"
-    >
+    <div class="container d-flex flex-column flex-md-row justify-content-between">
       <a class="py-2 d-none d-md-inline-block" href="index.html">
         <i class="fas fa-home"></i>
 
-        Inicio</a
-      >
+        Inicio</a>
       <a class="py-2 d-none d-md-inline-block" href="categories.html">
         <i class="fas fa-align-justify"></i>
 
-        Categorías</a
-      >
+        Categorías</a>
       <a class="py-2 d-none d-md-inline-block" href="products.html">
         <i class="fas fa-list"></i>
 
-        Productos</a
-      >
+        Productos</a>
       <a class="py-2 d-none d-md-inline-block" href="sell.html">
         <i class="fas fa-cash-register"></i>
 
-        Vender</a
-      >
+        Vender</a>
       <div class="dropdown">
-        <a id="nombreusr" class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a id="nombreusr" class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Dropdown link
         </a>
-      
+
         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-          <a class="dropdown-item"  href="my-profile.html">Mi perfil</a>
+          <a class="dropdown-item" href="my-profile.html">Mi perfil</a>
           <a class="dropdown-item" href="cart.html">Ver mi carrito</a>
-          <a onClick="desconectar()"class="cerrar-sesion" href="#">Cerrar sesión</a>
+          <a onClick="desconectar()" class="cerrar-sesion" href="#">Cerrar sesión</a>
         </div>
       </div>
 
     </div>
   </nav>
-  <div class="container p-5">
-    <div class="alert alert-danger" role="alert" style="position: relative; width:auto; top: 0;">
-      <h4 class="alert-heading">¡A trabajar! :)</h4>
-      <p>Esta sección corresponde a: Entrega 5 (Fecha de entrega: 17/10/2021) y Entrega 7 (Fecha de entrega: 14/11/2021).</p>
-      <hr>
-      <p class="mb-0">Para saber qué debes hacer, fijate en la actividad en CREA correspondiente a esta entrega.</p>
-    </div>
+  <div class="carrito">
+
+    <main class="page">
+      <section class="shopping-cart dark">
+        <div class="container">
+          <div class="block-heading">
+            <h2>Mi carrito</h2>
+            <p>tengo que ver que escribir acá pero seguramente algo voy a poner equisde</p>
+          </div>
+          <div class="content">
+            <div class="row">
+              <div class="col-md-12 col-lg-8">
+                <div id="compras" class="items">
+
+                </div>
+              </div>
+              <div class="col-md-12 col-lg-4">
+                <div class="summary">
+                  <h3>Resumen</h3>
+                  <div class="summary-item"><span class="text">Subtotal</span><span id="subTotal"
+                      class="price">$0</span></div>
+                  <div class="summary-item"><span class="text">Descuento</span><span class="price">$0</span></div>
+                  <div class="summary-item"><span class="text">Envío</span><span id="envio" class="price">$0</span></div>
+                  <div class="summary-item"><span class="text">Total</span><span id="total" class="price">$0</span></div>
+                  
+
+
+                    <div onclick="total()" id="tipos">
+                     <h3>Seleccioná tu tipo de envío</h3>
+                      
+                      
+                      <label class="radio">
+                          <input type="radio" name="r" value="1" checked>
+                          <span>Premium</span>
+                      </label><br>
+                      <label class="radio">
+                          <input type="radio" name="r" value="2">
+                          <span>Express</span>
+                      </label><br>
+                      <label class="radio">
+                          <input type="radio" name="r" value="3">
+                          <span>Standard</span>
+                      </label>
+                  </div>
+                  
+                  <!-- boton envío -->
+                  <button type="button" onclick="alertaEnvío()"class="btn btn-primary">¿Cómo calcular el envío?</button>
+
+                  <button type="button"  class="btn btn-primary btn-lg btn-block">Finalizar
+                    compra</button>
+
+
+
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
   </div>
+  </section>
+  </main>
+
+
+
+
+
+
+
+
   <div id="spinner-wrapper">
     <div class="lds-ring">
       <div></div>
@@ -96,6 +161,10 @@
   <script src="js/init.js"></script>
   <script src="js/cart.js"></script>
   <script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
+  <script src="css/form.css"></script>
+  <script src="js/sweetalert2.all.min.js"></script>
+  
+
 </body>
 
 </html>
