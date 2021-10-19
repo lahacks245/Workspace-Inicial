@@ -163,7 +163,7 @@ function calcu(){
                 .then((response) => response.json())
                 .then((data) => data.ip);
 
-              const { value: ipAddress } = await Swal.fire({
+              const { value: parametro } = await Swal.fire({
                 title: "Ingresá el monto del artículo",
                 input: "text",
                 inputPlaceholder: "Ingresa sólo el numero",
@@ -178,9 +178,9 @@ function calcu(){
                 },
               });
 
-              if (ipAddress) {
+              if (parametro) {
                 Swal.fire(
-                  `El costo del envío es de: USD ${ipAddress * 0.15}`
+                  `El costo del envío es de: USD ${parametro * 0.15}`
                 );
               }
             })();
@@ -192,7 +192,7 @@ function calcu(){
                 .then((response) => response.json())
                 .then((data) => data.ip);
 
-              const { value: ipAddress } = await Swal.fire({
+              const { value: parametro } = await Swal.fire({
                 title: "Ingresá el monto del artículo",
                 input: "text",
                 inputPlaceholder: "Ingresa sólo el numero",
@@ -207,9 +207,9 @@ function calcu(){
                 },
               });
 
-              if (ipAddress) {
+              if (parametro) {
                 Swal.fire(
-                  `El costo del envío es de: USD ${ipAddress * 0.07}`
+                  `El costo del envío es de: USD ${parametro * 0.07}`
                 );
               }
             })();
@@ -221,7 +221,7 @@ function calcu(){
                 .then((response) => response.json())
                 .then((data) => data.ip);
 
-              const { value: ipAddress } = await Swal.fire({
+              const { value: parametro } = await Swal.fire({
                 title: "Ingresá el monto del artículo",
                 input: "text",
                 inputPlaceholder: "Ingresa sólo valor numérico",
@@ -235,9 +235,9 @@ function calcu(){
                 },
               });
 
-              if (ipAddress) {
+              if (parametro) {
                 Swal.fire(
-                  `El costo del envío es de: USD ${ipAddress * 0.05.toFixed(2)}`
+                  `El costo del envío es de: USD ${parametro * 0.05.toFixed(2)}`
                 );
               }
             })();
