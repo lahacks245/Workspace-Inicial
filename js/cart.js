@@ -132,14 +132,15 @@ function valorNumerico(){
   
   reverseButtons: true,
   }).then((result) => {
-    /* Read more about isConfirmed, isDenied below */
+    
     if (result.isConfirmed) {
       calcu()
     } 
   })
 }
 
-
+/*Acá conecté con una api que no la uso nunca,ya que me basé en un ejemplo
+de la documentación de SweetAlert,y también tengo que mejorar varias cosas en la Calculadora */
 function calcu(){
   (async () => {
     const { value: fruit } = await Swal.fire({

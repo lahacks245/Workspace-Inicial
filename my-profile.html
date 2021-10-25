@@ -8,10 +8,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="google-signin-scope" content="profile email">
-    <meta name="google-signin-client_id" content="598903154388-sm9cm7ngn4d06srb0c6e9brh6bhs8m6t.apps.googleusercontent.com">
+  <meta name="google-signin-client_id"
+    content="598903154388-sm9cm7ngn4d06srb0c6e9brh6bhs8m6t.apps.googleusercontent.com">
   <title>eMercado - Todo lo que busques está aquí</title>
   <link href="css/font-awesome.min.css" rel="stylesheet" />
   <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/album/">
+  <link href="css/estilosProfile.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
 
   <style>
@@ -37,38 +39,34 @@
 
 <body>
   <nav class="site-header sticky-top py-1 bg-dark">
-    <div
-      class="container d-flex flex-column flex-md-row justify-content-between"
-    >
+    <div class="container d-flex flex-column flex-md-row justify-content-between">
       <a class="py-2 d-none d-md-inline-block" href="index.html">
         <i class="fas fa-home"></i>
 
-        Inicio</a
-      >
+        Inicio</a>
       <a class="py-2 d-none d-md-inline-block" href="categories.html">
         <i class="fas fa-align-justify"></i>
 
-        Categorías</a
-      >
+        Categorías</a>
       <a class="py-2 d-none d-md-inline-block" href="products.html">
         <i class="fas fa-list"></i>
 
-        Productos</a
-      >
+        Productos</a>
       <a class="py-2 d-none d-md-inline-block" href="sell.html">
         <i class="fas fa-cash-register"></i>
 
-        Vender</a
-      >
+        Vender</a>
       <div class="dropdown">
-        <a id="nombreusr" class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a id="nombreusr" class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Dropdown link
         </a>
-      
+
+
         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-          <a class="dropdown-item"  href="my-profile.html">Mi perfil</a>
+          <a class="dropdown-item" href="my-profile.html">Mi perfil</a>
           <a class="dropdown-item" href="cart.html">Ver mi carrito</a>
-          <a onClick="desconectar()"class="cerrar-sesion" href="#">Cerrar sesión</a>
+          <a onClick="desconectar()" class="cerrar-sesion" href="#">Cerrar sesión</a>
         </div>
       </div>
 
@@ -77,62 +75,72 @@
 
 
   <section style="background-color: #eee;">
-    <div class="container py-5">
+    <div id="datos" class="container py-5">
       <div class="row">
         <div class="col">
           <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-4">
             <ol class="breadcrumb mb-0">
               <li class="breadcrumb-item"><a href="index.html">Inicio</a></li>
-              
+
               <li class="breadcrumb-item active" aria-current="page">Mi perfil</li>
             </ol>
           </nav>
         </div>
       </div>
-  
+
       <div class="row">
         <div class="col-lg-4">
           <div class="card mb-4">
-            <div id="info"class="card-body text-center">
+            <div id="info" class="card-body text-center">
               <div id="foto"></div>
               <h5 name="n" class="my-3"></h5>
-              
+
               <div class="d-flex justify-content-center mb-2">
-                
-                <button type="button" class="btn btn-outline-primary ms-1">Message</button>
-                
+
+                <button type="button" class="btn btn-outline-primary ms-1">Editar foto</button>
+
               </div>
             </div>
           </div>
-          
+
         </div>
         <div class="col-lg-8">
           <div class="card mb-4">
             <div class="card-body">
-              
+
               <div class="row">
                 <div class="col-sm-3">
                   <p class="mb-0">Nombre de usuario</p>
                 </div>
                 <div class="col-sm-9">
-                  <p name="n" class="my-3" class="text-muted mb-0"></p>
+                  <p name="n" class="text-muted mb-0"></p>
                 </div>
               </div>
               <hr>
+             
               <div class="row">
                 <div class="col-sm-3">
+
                   <p class="mb-0">Nombre completo</p>
+                  
                 </div>
+               
                 <div class="col-sm-9">
+                  <div class="text-muted mb-0" name="formDatos" id="divNombreCompleto"></div>
+
                   <p id="nombreCompleto" class="text-muted mb-0"></p>
                 </div>
               </div>
+             
               <hr>
+             
               <div class="row">
                 <div class="col-sm-3">
-                  <p  class="mb-0">Email</p>
+                  <p class="mb-0">Email</p>
                 </div>
                 <div class="col-sm-9">
+                  <div class="text-muted mb-0" name="formDatos" id="divEmail"></div>
+
                   <p id="email" class="text-muted mb-0"></p>
                 </div>
               </div>
@@ -142,15 +150,19 @@
                   <p class="mb-0">Teléfono</p>
                 </div>
                 <div class="col-sm-9">
+                  <div class="text-muted mb-0" name="formDatos" id="divTelefono"></div>
+
                   <p id="telefono" class="text-muted mb-0"></p>
                 </div>
               </div>
               <hr>
               <div class="row">
                 <div class="col-sm-3">
-                  <p  class="mb-0">Celular</p>
+                  <p class="mb-0">Celular</p>
                 </div>
                 <div class="col-sm-9">
+                  <div class="text-muted mb-0" name="formDatos" id="divCelular"></div>
+
                   <p id="celular" class="text-muted mb-0"></p>
                 </div>
               </div>
@@ -160,19 +172,29 @@
                   <p class="mb-0">Dirección</p>
                 </div>
                 <div class="col-sm-9">
-                  <p id="direccion"  class="text-muted mb-0"></p>
+                  <div class="text-muted mb-0" name="formDatos" id="divDireccion"></div>
+
+                  <p id="direccion" class="text-muted mb-0"></p>
                 </div>
               </div>
-              
+
             </div>
           </div>
-          
+
         </div>
       </div>
+
+
+
+      <button type="button" onclick="modificarDatos()" class="btn btn-outline-info">Modificar mis datos</button>
+
+
+
     </div>
+
   </section>
 
- 
+
 
 
 

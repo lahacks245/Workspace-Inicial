@@ -408,3 +408,16 @@ div.desc {
 
 
 
+.btn.btn-outline-info{
+  float: right;
+}
+
+.btn.btn-outline-danger{
+  float: right;
+
+}
+
+.btn.btn-outline-success{
+  float: right;
+
+}
