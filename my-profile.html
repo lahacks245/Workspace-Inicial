@@ -116,30 +116,38 @@
                   <p name="n" class="text-muted mb-0"></p>
                 </div>
               </div>
+
+
               <hr>
-             
               <div class="row">
                 <div class="col-sm-3">
 
                   <p class="mb-0">Nombre completo</p>
-                  
+
                 </div>
-               
+
                 <div class="col-sm-9">
-                  <div class="text-muted mb-0" name="formDatos" id="divNombreCompleto"></div>
+                  <div class="text-muted mb-0" name="formDatos"><input hidden type="input" class="form__fieldd"
+                      placeholder="Ingrese su nombre completo" name="name" id='nombre' required />
+                    <span name="spans" id="divNombreCompleto"></span>
+                  </div>
 
                   <p id="nombreCompleto" class="text-muted mb-0"></p>
                 </div>
               </div>
-             
+
               <hr>
-             
+
               <div class="row">
                 <div class="col-sm-3">
                   <p class="mb-0">Email</p>
                 </div>
                 <div class="col-sm-9">
-                  <div class="text-muted mb-0" name="formDatos" id="divEmail"></div>
+                  <div class="text-muted mb-0" name="formDatos">
+                    <input hidden type="email" class="form__fieldd" placeholder="Ingrese su email" name="name"
+                      id='email' required />
+                    <span name="spans" id="divEmail"></span>
+                  </div>
 
                   <p id="email" class="text-muted mb-0"></p>
                 </div>
@@ -150,7 +158,11 @@
                   <p class="mb-0">Teléfono</p>
                 </div>
                 <div class="col-sm-9">
-                  <div class="text-muted mb-0" name="formDatos" id="divTelefono"></div>
+                  <div class="text-muted mb-0" name="formDatos">
+                    <input hidden type="input" class="form__fieldd" placeholder="Ingrese su número de teléfono"
+                      name="name" id='telefono' required />
+                    <span name="spans" id="divTelefono"></span>
+                  </div>
 
                   <p id="telefono" class="text-muted mb-0"></p>
                 </div>
@@ -161,7 +173,11 @@
                   <p class="mb-0">Celular</p>
                 </div>
                 <div class="col-sm-9">
-                  <div class="text-muted mb-0" name="formDatos" id="divCelular"></div>
+                  <div class="text-muted mb-0" name="formDatos">
+                    <input hidden type="input" class="form__fieldd" placeholder="Ingrese su número de celular"
+                      name="name" id='celular' required />
+                    <span name="spans" id="divCelular"></span>
+                  </div>
 
                   <p id="celular" class="text-muted mb-0"></p>
                 </div>
@@ -172,12 +188,50 @@
                   <p class="mb-0">Dirección</p>
                 </div>
                 <div class="col-sm-9">
-                  <div class="text-muted mb-0" name="formDatos" id="divDireccion"></div>
+                  <div class="text-muted mb-0" name="formDatos">
+                    <input hidden type="input" class="form__fieldd" placeholder="Ingrese su direccion" name="name"
+                      id='direccion' required />
+                    <span name="spans" id="divDireccion"></span>
+                  </div>
 
                   <p id="direccion" class="text-muted mb-0"></p>
                 </div>
               </div>
+              <hr>
 
+              <div class="row">
+                <div class="col-sm-3">
+
+                  <p class="mb-0">Sexo:</p>
+
+                </div>
+
+                <div class="col-sm-9">
+                  <div class="text-muted mb-0"><input hidden type="input" class="form__fieldd"
+                      placeholder="Ingrese su nombre completo" required />
+
+                  </div>
+                  
+                 
+                  <div name="name" class="selectdiv">
+                    <label>
+                        <select onchange="avatar()">
+                            
+                            <option name="o" value="1" id="1">Hombre</option>
+                            <option name="o" value="2" id="2">Mujer</option>
+                            
+                        </select>
+                    </label>
+                  </div>
+
+
+
+
+
+
+                  
+                </div>
+              </div>
             </div>
           </div>
 
@@ -187,6 +241,8 @@
 
 
       <button type="button" onclick="modificarDatos()" class="btn btn-outline-info">Modificar mis datos</button>
+      <button type="button" onclick="guardar()" class="btn btn-outline-success">Guardar</button>
+      <button type="button" onclick="cancelar()" class="btn btn-outline-danger">Cancelar</button>
 
 
 

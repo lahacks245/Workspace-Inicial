@@ -1,10 +1,65 @@
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
+let nombreCompleto = {};
+let email = {};
+let telefono = 0;
+let celular = 0;
+let direccion = {};
+  
 
 document.addEventListener("DOMContentLoaded", function (e) {
+  var clase = document.querySelectorAll(
+    ".btn.btn-outline-success , .btn.btn-outline-danger "
+  ),
+  i = 0,
+  l = clase.length;
+
+for (i; i < l; i++) {
+  clase[i].style.display = "none";
+}
+var mod = document.querySelectorAll(".btn.btn-outline-info"),
+  i = 0;
+l = mod.length;
+for (i; i < l; i++) {
+  mod[i].style.display = "";
+}
+  
   let usuario = JSON.parse(localStorage.getItem("usuario"));
 
+
+
+
+  
+  if(usuario.nombreCompleto == undefined && usuario.email == undefined && usuario.telefono == undefined && usuario.ceuluar==undefined && usuario.direccion==undefined){
+modificarDatos()
+  }else{
+    document.getElementById("divNombreCompleto").innerHTML = usuario.nombreCompleto;
+    document.getElementById("divEmail").innerHTML = usuario.email;
+    document.getElementById("divTelefono").innerHTML = usuario.telefono;
+    document.getElementById("divCelular").innerHTML = usuario.celular;
+    document.getElementById("divDireccion").innerHTML = usuario.direccion;
+
+  }
+  
+  /*
+  ESTO ES PA CAMBIAR EL AVATAR SEGUN EL SEXO
+  document.getElementsByName("s").forEach((input) => {
+    if (input.checked == true) {
+      if (input.value == 1) {
+        document.getElementById(
+          "foto"
+        ).innerHTML = `<img src="https://mdbootstrap.com/img/Photos/new-templates/bootstrap-chat/ava3.png" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">`;
+      } else if (input.value == 2) {
+       document.getElementById(
+          "foto"
+        ).innerHTML = `<img src="https://mdbootstrap.com/img/Photos/new-templates/bootstrap-chat/ava4.png" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">`;
+      } 
+    }
+  });
+*/  
+  
+  
   if (usuario.img != undefined) {
     document.getElementById(
       "foto"
@@ -21,53 +76,55 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
 function modificarDatos() {
   ocultar();
-
-  document.getElementById("datos").innerHTML += `
   
+  document.getElementsByName("name").forEach((input) => {
 
-  <button type="button" onclick="guardar()" class="btn btn-outline-success">Guardar</button>
-  
-  <button type="button" onclick="cancelar()" class="btn btn-outline-danger">Cancelar</button>
-  `;
-  document.getElementById(
-    "divNombreCompleto"
-  ).innerHTML += `<div class="">
-  <input type="input" class="form__fieldd" placeholder="Nombre completo" name="i" id='name' required />
-  
-</div>`
+    if (input.hidden == true) {
+      input.hidden=false
+        
+    }
 
-document.getElementById(
-  "divEmail"
-).innerHTML += `<div class="">
-<input type="email" class="form__fieldd" placeholder="Email" name="name" id='i' required />
+  });
+  document.getElementsByName("spans").forEach((span) => {
+    if(span.innerText != ""){
+      span.previousElementSibling.value = span.innerText;
+      span.hidden = true
+    }
+    
+  });
+  var clase = document.querySelectorAll(
+    ".btn.btn-outline-success , .btn.btn-outline-danger "
+  ),
+  i = 0,
+  l = clase.length;
 
-</div>`
-document.getElementById(
-  "divTelefono"
-).innerHTML += `<div class="">
-<input type="input" class="form__fieldd" placeholder="Teléfono" name="name" id='i' required />
-
-</div>`
-document.getElementById(
-  "divCelular"
-).innerHTML += `<div class="">
-<input type="input" class="form__fieldd" placeholder="Celular" name="name" id='i' required />
-
-</div>`
-
-
-document.getElementById(
-  "divDireccion"
-).innerHTML += `<div class="">
-<input type="input" class="form__fieldd" placeholder="Direccion" name="name" id='i' required />
-
-</div>`
-
-
-
-
-;
+for (i; i < l; i++) {
+  clase[i].style.display = "";
 }
+  
+}
+
+
+
+function avatar(){
+  document.getElementsByName("o").forEach((input) => {
+    if (input.selected == true) {
+      if (input.value == 1) {
+        console.log("hola")
+      } else if (input.value == 2) {
+        console.log("holaaaa")
+      }
+    }
+  });
+  
+}
+
+
+
+
+
+
+
 
 function ocultar() {
   var clase = document.querySelectorAll(".btn.btn-outline-info"),
@@ -95,11 +152,18 @@ function cancelar() {
   for (i; i < l; i++) {
     mod[i].style.display = "";
   }
-  document.getElementById(
-    "divDireccion"
-  ).innerHTML = ``
   
+  document.getElementsByName("spans").forEach((span) => {
+    span.hidden = false
+   
+    
+  });
+document.getElementsByName("name").forEach((input)=>{
+  input.hidden = true
 }
+
+  
+)}
 
 function guardar() {
   var clase = document.querySelectorAll(
@@ -117,4 +181,58 @@ function guardar() {
   for (i; i < l; i++) {
     mod[i].style.display = "";
   }
+
+  valorStorage()
+  document.getElementsByName("name").forEach((input) => {
+
+    if (input.hidden == false) {
+      input.hidden=true
+        
+    }
+
+  });
+  
+
+
+
+
 }
+
+
+
+document.addEventListener("keypress",(event)=>{
+  if(event.code=="Enter"){
+      guardar();
+  }
+})
+
+function valorStorage(){
+  nombreCompleto = document.getElementById("nombre").value;
+  email = document.getElementById("email").value;
+  telefono = document.getElementById("telefono").value;
+  celular = document.getElementById("celular").value;
+  direccion = document.getElementById("direccion").value;
+  local()
+  
+  
+}
+
+function local(){
+  let usuario = JSON.parse(localStorage.getItem("usuario"));
+  usuario.nombreCompleto = nombreCompleto;
+  usuario.email = email;
+  usuario.telefono = telefono;
+  usuario.celular = celular;
+  usuario.direccion = direccion;
+  
+ 
+  localStorage.setItem("usuario", JSON.stringify(usuario));
+  sessionStorage.setItem("usuario", JSON.stringify(usuario));
+
+  document.getElementById("divNombreCompleto").innerHTML = usuario.nombreCompleto;
+  document.getElementById("divEmail").innerHTML = usuario.email;
+  document.getElementById("divTelefono").innerHTML = usuario.telefono;
+  document.getElementById("divCelular").innerHTML = usuario.celular;
+  document.getElementById("divDireccion").innerHTML = usuario.direccion;
+}
+

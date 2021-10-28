@@ -12,7 +12,10 @@ function prueba(){
 }
 
 document.addEventListener("DOMContentLoaded", function(e){
-
+    let usuario = JSON.parse( localStorage.getItem("usuario"));
+    if(usuario !== null){
+        location.href = "index.html";
+      }
 
 });
 

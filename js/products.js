@@ -49,43 +49,37 @@ function showProductsList(array) {
     ) {
       htmlContentToAppend +=
         `
-        <a href="product-info.html" class="product-list-group-item list-group-item-action">
-                
-            
-        <div class="list-group-item list-group-item-action">
-            <div class="row">
-                <div class="col-3">
-                    <img src="` +
+       
+ 
+    <!-- Team Member 1 -->
+    <div class="col-xl-3 col-md-6 mb-4">
+      <a href="product-info.html" >
+      <div  class="card border-0 shadow">
+        <img src="` +
         producto.imgSrc +
-        `" alt="` +
-        producto.description +
-        `" class="img-thumbnail">
-                </div>
-               
-                <div class="col">
-                    <div class="d-flex w-100 justify-content-between">
-                        <h3 class="mb-1">` +
-        producto.name +
-        `</h3>
-                        <small class="font-weight-bold h4
-                        ">` +
-        producto.currency +
-        ` ` +
-        producto.cost +
-        ` </small > 
-                    </div>
-                    <p class=  "mb-1"  >` +
-        producto.description +
-        `</p>
-        <p class ="text-muted"> <b>Vendidos ` +
-        producto.soldCount +
-        ` </b> </p>
-
-                </div>
-            </div>
-            
+        `" class="card-img-top" alt="...">
+        <div class="card-body text-center">
+          <h5 class="card-title mb-0">` +
+          producto.name +
+          `</h5>
+          <div class="card-text text-black-50">` +
+          producto.description +
+          `</div>
         </div>
-        </a>
+      </div>
+    </div>
+      
+      </a>
+    
+   
+  
+                   
+                    
+                    
+                    
+
+
+
         `;
     }
   }
@@ -187,3 +181,7 @@ document
 
     showProductsList(productsArray);
   });
+
+
+
+   
