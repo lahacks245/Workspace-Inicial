@@ -6,6 +6,7 @@ let email = {};
 let telefono = 0;
 let celular = 0;
 let direccion = {};
+let edad = 0;
 
 document.addEventListener("DOMContentLoaded", function (e) {
   var clase = document.querySelectorAll(
@@ -31,8 +32,10 @@ document.addEventListener("DOMContentLoaded", function (e) {
     usuario.email == undefined &&
     usuario.telefono == undefined &&
     usuario.ceuluar == undefined &&
-    usuario.direccion == undefined
-  ) {
+    usuario.direccion == undefined &&
+    usuario.edad == undefined )
+   
+   {
     modificarDatos();
   } else {
     document.getElementById("divNombreCompleto").innerHTML =
@@ -41,6 +44,8 @@ document.addEventListener("DOMContentLoaded", function (e) {
     document.getElementById("divTelefono").innerHTML = usuario.telefono;
     document.getElementById("divCelular").innerHTML = usuario.celular;
     document.getElementById("divDireccion").innerHTML = usuario.direccion;
+    document.getElementById("divEdad").innerHTML = usuario.edad;
+    
   }
 
   if (usuario.img != undefined) {
@@ -58,7 +63,6 @@ document.addEventListener("DOMContentLoaded", function (e) {
 });
 
 function modificarDatos() {
-  ocultar();
 
   document.getElementsByName("name").forEach((input) => {
     if (input.hidden == true) {
@@ -80,6 +84,14 @@ function modificarDatos() {
   for (i; i < l; i++) {
     clase[i].style.display = "";
   }
+  var clase = document.querySelectorAll(".btn.btn-outline-info"),
+    i = 0,
+    l = clase.length;
+
+  for (i; i < l; i++) {
+    clase[i].style.display = "none";
+  }
+
 }
 
 function avatar() {
@@ -99,16 +111,6 @@ function avatar() {
       }
     }
   });
-}
-
-function ocultar() {
-  var clase = document.querySelectorAll(".btn.btn-outline-info"),
-    i = 0,
-    l = clase.length;
-
-  for (i; i < l; i++) {
-    clase[i].style.display = "none";
-  }
 }
 
 function cancelar() {
@@ -151,14 +153,19 @@ function guardar() {
   l = mod.length;
   for (i; i < l; i++) {
     mod[i].style.display = "";
+    
   }
 
   valorStorage();
-  document.getElementsByName("name").forEach((input) => {
-    if (input.hidden == false) {
-      input.hidden = true;
-    }
+   
+  document.getElementsByName("spans").forEach((span) => {
+    span.hidden = false;
   });
+  document.getElementsByName("name").forEach((input) => {
+    input.hidden = true;
+  });
+
+  
 }
 
 document.addEventListener("keypress", (event) => {
@@ -173,6 +180,8 @@ function valorStorage() {
   telefono = document.getElementById("telefono").value;
   celular = document.getElementById("celular").value;
   direccion = document.getElementById("direccion").value;
+  edad = document.getElementById("edad").value;
+ 
   local();
 }
 
@@ -183,6 +192,8 @@ function local() {
   usuario.telefono = telefono;
   usuario.celular = celular;
   usuario.direccion = direccion;
+ 
+  usuario.edad = edad;
 
   localStorage.setItem("usuario", JSON.stringify(usuario));
   sessionStorage.setItem("usuario", JSON.stringify(usuario));
@@ -193,4 +204,6 @@ function local() {
   document.getElementById("divTelefono").innerHTML = usuario.telefono;
   document.getElementById("divCelular").innerHTML = usuario.celular;
   document.getElementById("divDireccion").innerHTML = usuario.direccion;
+  document.getElementById("divEdad").innerHTML = usuario.edad;
+
 }
