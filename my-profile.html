@@ -92,12 +92,19 @@
         <div class="col-lg-4">
           <div class="card mb-4">
             <div id="info" class="card-body text-center">
-              <div id="foto"></div>
+              <div >
+                <img id="foto"  src="https://mdbootstrap.com/img/Photos/new-templates/bootstrap-chat/ava3.png" alt="avatar" class="rounded-circle img-fluid" style="width: 250px;">
+              </div>
               <h5 name="n" class="my-3"></h5>
 
               <div class="d-flex justify-content-center mb-2">
 
-                <button type="button" class="btn btn-outline-primary ms-1">Editar foto</button>
+                <!-- <button type="button" class="btn btn-outline-primary ms-1">Editar foto</button> -->
+                <label class="btn btn-primary">
+                 Editar mi foto<input type="file" onclick="editarFoto()"id="imagen" style="display: none;"  name="image">
+                </label>
+                
+                <img id="img1"><br/>
 
               </div>
             </div>

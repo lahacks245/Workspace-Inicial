@@ -7,6 +7,7 @@ let telefono = 0;
 let celular = 0;
 let direccion = {};
 let edad = 0;
+let usuario = JSON.parse(localStorage.getItem("usuario"));
 
 document.addEventListener("DOMContentLoaded", function (e) {
   var clase = document.querySelectorAll(
@@ -25,7 +26,9 @@ document.addEventListener("DOMContentLoaded", function (e) {
     mod[i].style.display = "";
   }
 
-  let usuario = JSON.parse(localStorage.getItem("usuario"));
+  if (usuario.img != null) {
+    document.getElementById("foto").src = usuario.img;
+  }
 
   if (
     usuario.nombreCompleto == undefined &&
@@ -33,9 +36,8 @@ document.addEventListener("DOMContentLoaded", function (e) {
     usuario.telefono == undefined &&
     usuario.ceuluar == undefined &&
     usuario.direccion == undefined &&
-    usuario.edad == undefined )
-   
-   {
+    usuario.edad == undefined
+  ) {
     modificarDatos();
   } else {
     document.getElementById("divNombreCompleto").innerHTML =
@@ -45,25 +47,14 @@ document.addEventListener("DOMContentLoaded", function (e) {
     document.getElementById("divCelular").innerHTML = usuario.celular;
     document.getElementById("divDireccion").innerHTML = usuario.direccion;
     document.getElementById("divEdad").innerHTML = usuario.edad;
-    
   }
 
-  if (usuario.img != undefined) {
-    document.getElementById(
-      "foto"
-    ).innerHTML = `<img src="${usuario.img}" referrerpolicy="no-referrer" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;"> `;
-  } else {
-    document.getElementById(
-      "foto"
-    ).innerHTML = `<img src="https://mdbootstrap.com/img/Photos/new-templates/bootstrap-chat/ava3.png" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">`;
-  }
   document.getElementsByName("n").forEach((name) => {
     name.innerHTML += usuario.nombre;
   });
 });
 
 function modificarDatos() {
-
   document.getElementsByName("name").forEach((input) => {
     if (input.hidden == true) {
       input.hidden = false;
@@ -91,26 +82,6 @@ function modificarDatos() {
   for (i; i < l; i++) {
     clase[i].style.display = "none";
   }
-
-}
-
-function avatar() {
-  document.getElementsByName("o").forEach((input) => {
-   
-    if (input.selected == true) {
-      if (input.value == 1) {
-        
-        document.getElementById(
-          "foto"
-        ).innerHTML = `<img src="https://mdbootstrap.com/img/Photos/new-templates/bootstrap-chat/ava3.png" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">`;
-
-      } else if (input.value == 2) {
-        document.getElementById(
-          "foto"
-        ).innerHTML = `<img src="https://mdbootstrap.com/img/Photos/new-templates/bootstrap-chat/ava4.png" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">`;
-      }
-    }
-  });
 }
 
 function cancelar() {
@@ -153,19 +124,16 @@ function guardar() {
   l = mod.length;
   for (i; i < l; i++) {
     mod[i].style.display = "";
-    
   }
 
   valorStorage();
-   
+
   document.getElementsByName("spans").forEach((span) => {
     span.hidden = false;
   });
   document.getElementsByName("name").forEach((input) => {
     input.hidden = true;
   });
-
-  
 }
 
 document.addEventListener("keypress", (event) => {
@@ -181,7 +149,7 @@ function valorStorage() {
   celular = document.getElementById("celular").value;
   direccion = document.getElementById("direccion").value;
   edad = document.getElementById("edad").value;
- 
+
   local();
 }
 
@@ -192,7 +160,8 @@ function local() {
   usuario.telefono = telefono;
   usuario.celular = celular;
   usuario.direccion = direccion;
- 
+  usuario.img = document.getElementById("foto").src;
+
   usuario.edad = edad;
 
   localStorage.setItem("usuario", JSON.stringify(usuario));
@@ -205,5 +174,20 @@ function local() {
   document.getElementById("divCelular").innerHTML = usuario.celular;
   document.getElementById("divDireccion").innerHTML = usuario.direccion;
   document.getElementById("divEdad").innerHTML = usuario.edad;
+}
 
+function editarFoto() {
+  var inputFile = document.getElementById("imagen");
+  inputFile.addEventListener("change", mostrarImagen, false);
+  modificarDatos();
+}
+
+function mostrarImagen(event) {
+  var file = event.target.files[0];
+  var reader = new FileReader();
+  reader.onload = function (event) {
+    var img = document.getElementById("foto");
+    img.src = event.target.result;
+  };
+  reader.readAsDataURL(file);
 }

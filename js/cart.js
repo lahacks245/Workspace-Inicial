@@ -27,7 +27,7 @@ function compras(array) {
       product.articles[i].currency = "USD";
     }
     htmlContentToAppend += `
-                  <div class="product">
+                  <div width=device-width class="product">
                     <div class="row">
                       <div class="col-md-3">
                         <img class="item-image img-fluid mx-auto d-block image" src="${producto.src}">
@@ -48,7 +48,7 @@ function compras(array) {
                             <div class="row price">
                               <span>${producto.currency} </span>
                               &nbsp
-                              <span class="item-price"> ${producto.unitCost}</span>
+                              <span  class="item-price "> ${producto.unitCost}</span>
                               
                             </div>
                           </div>

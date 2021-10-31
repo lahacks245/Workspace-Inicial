@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", function(e){
 
             usuario.nombre = user.value;
             usuario.estado = "Conectado";
-           
+            
 
             localStorage.setItem('usuario',JSON.stringify(usuario));
             sessionStorage.setItem('usuario',JSON.stringify(usuario));
@@ -58,7 +58,11 @@ document.addEventListener("DOMContentLoaded", function(e){
       usuario.nombre = profile.getName();
       usuario.estado = "Conectado";
       usuario.img = profile.getImageUrl();
-
+      
+     usuario.email =profile.getEmail()
+     
+  
+     
       localStorage.setItem('usuario',JSON.stringify(usuario));
       sessionStorage.setItem('usuario',JSON.stringify(usuario));
       // The ID token you need to pass to your backend:
