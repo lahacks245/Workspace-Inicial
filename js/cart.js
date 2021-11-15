@@ -5,13 +5,23 @@ let product = [];
 let precioArt = 0;
 let valor = 0;
 let relacionEnvio = 0;
+let costoTotal = 0;
+
+  
+
 
 document.addEventListener("DOMContentLoaded", function (e) {
+  
+  
+  
+  
+  
   getJSONData(CART_INFO_URL).then(function (resultObj) {
     if (resultObj.status === "ok") {
       product = resultObj.data;
       compras(product.articles);
       total();
+      document.getElementById("totalPago").innerHTML = "USD" + " " + costoTotal;
     }
   });
 });
@@ -43,19 +53,23 @@ function compras(array) {
                             </div>
                             <div class="col-md-4 quantity">
                               <label for="quantity">Cantidad:</label>
-                              <input type="number" min=0 onchange="total()" id="productCount${i}" value=${producto.count} class="form-control quantity-input">
+                              <input type="number" min=0 onchange="total()" name="cant" id="productCount${i}" value=${producto.count} class="form-control quantity-input">
                             </div>
-                            <div class="row price">
-                              <span>${producto.currency} </span>
+                            <div class="col-md-12 col-lg-4 precio">
+                              <span><b>${producto.currency} </b></span>
                               &nbsp
-                              <span  class="item-price "> ${producto.unitCost}</span>
-                              
+                              <span  class="item-price "> <b>${producto.unitCost}  </b>                
+                              </span>
+
                             </div>
+                            <span onclick="eliminarArticulo(${i})" class="icono">   <i class="fa fa-trash" aria-hidden="true"></i> </span>
+
                           </div>
                         </div>
                       </div>
                     </div>
-                  </div> `;
+                  </div>
+                  <hr> `;
   }
   document.getElementById("compras").innerHTML = htmlContentToAppend;
   console.log(precioArt);
@@ -81,10 +95,12 @@ function total() {
       }
     }
   });
+
   document.getElementById("envio").innerHTML =
     " USD " + (subTotal * relacionEnvio).toFixed(2);
-  document.getElementById("total").innerHTML =
-    " USD " + (subTotal + subTotal * relacionEnvio).toFixed(2);
+
+  costoTotal = (subTotal + subTotal * relacionEnvio).toFixed(2);
+  document.getElementById("total").innerHTML = " USD " + costoTotal;
 }
 
 function alertaEnvío() {
@@ -116,32 +132,30 @@ function alertaEnvío() {
     },
   }).then((result) => {
     if (result.isConfirmed) {
-      calcu()
+      calcu();
     }
   });
 }
 
-function valorNumerico(){
+function valorNumerico() {
   Swal.fire({
-    imageUrl: 'img/valor.png',
+    imageUrl: "img/valor.png",
     imageWidth: 800,
     imageHeight: 400,
-    
-    
-  confirmButtonText: 'Ok',
-  
-  reverseButtons: true,
+
+    confirmButtonText: "Ok",
+
+    reverseButtons: true,
   }).then((result) => {
-    
     if (result.isConfirmed) {
-      calcu()
-    } 
-  })
+      calcu();
+    }
+  });
 }
 
 /*Acá conecté con una api que no la uso nunca,ya que me basé en un ejemplo
 de la documentación de SweetAlert,y también tengo que mejorar varias cosas en la Calculadora */
-function calcu(){
+function calcu() {
   (async () => {
     const { value: fruit } = await Swal.fire({
       title: "Seleccioná un tipo de envío",
@@ -159,7 +173,7 @@ function calcu(){
           if (value === "Premium") {
             (async () => {
               const ipAPI = "//api.ipify.org?format=json";
-              let prm = 0.15;
+
               const inputValue = fetch(ipAPI)
                 .then((response) => response.json())
                 .then((data) => data.ip);
@@ -169,7 +183,8 @@ function calcu(){
                 input: "text",
                 inputPlaceholder: "Ingresa sólo el numero",
                 inputValue: inputValue,
-                footer: '<button type="button" onClick="valorNumerico()" class="btn btn-info">¿Cuál es el valór numérico?</button>',
+                footer:
+                  '<button type="button" onClick="valorNumerico()" class="btn btn-info">¿Cuál es el valór numérico?</button>',
 
                 showCancelButton: true,
                 inputValidator: (value) => {
@@ -180,15 +195,13 @@ function calcu(){
               });
 
               if (parametro) {
-                Swal.fire(
-                  `El costo del envío es de: USD ${parametro * 0.15}`
-                );
+                Swal.fire(`El costo del envío es de: USD ${parametro * 0.15}`);
               }
             })();
           } else if (value == "Express") {
             (async () => {
               const ipAPI = "//api.ipify.org?format=json";
-              let prm = 0.15;
+
               const inputValue = fetch(ipAPI)
                 .then((response) => response.json())
                 .then((data) => data.ip);
@@ -198,7 +211,8 @@ function calcu(){
                 input: "text",
                 inputPlaceholder: "Ingresa sólo el numero",
                 inputValue: inputValue,
-                footer: '<button type="button" onClick="valorNumerico()" class="btn btn-info">¿Cuál es el valór numérico?</button>',
+                footer:
+                  '<button type="button" onClick="valorNumerico()" class="btn btn-info">¿Cuál es el valór numérico?</button>',
 
                 showCancelButton: true,
                 inputValidator: (value) => {
@@ -210,14 +224,16 @@ function calcu(){
 
               if (parametro) {
                 Swal.fire(
-                  `El costo del envío es de: USD ${parametro * 0.07}`
+                  `El costo del envío es de: USD ${
+                    parametro * (0.07).toFixed(2)
+                  }`
                 );
               }
             })();
           } else if (value == "Estandard") {
             (async () => {
               const ipAPI = "//api.ipify.org?format=json";
-              let prm = 0.15;
+
               const inputValue = fetch(ipAPI)
                 .then((response) => response.json())
                 .then((data) => data.ip);
@@ -227,7 +243,8 @@ function calcu(){
                 input: "text",
                 inputPlaceholder: "Ingresa sólo valor numérico",
                 inputValue: inputValue,
-                footer: '<button type="button" onClick="valorNumerico()" class="btn btn-info">¿Cuál es el valór numérico?</button>',
+                footer:
+                  '<button type="button" onClick="valorNumerico()" class="btn btn-info">¿Cuál es el valór numérico?</button>',
                 showCancelButton: true,
                 inputValidator: (value) => {
                   if (!value) {
@@ -238,7 +255,9 @@ function calcu(){
 
               if (parametro) {
                 Swal.fire(
-                  `El costo del envío es de: USD ${parametro * 0.05.toFixed(2)}`
+                  `El costo del envío es de: USD ${
+                    parametro * (0.05).toFixed(2)
+                  }`
                 );
               }
             })();
@@ -247,4 +266,72 @@ function calcu(){
       },
     });
   })();
+}
+
+function finalizarCompra() {
+  if (costoTotal == 0) {
+    Swal.fire({
+      title: "No hay artículos en el carrito",
+      text: "Para finalizar la compra, debe agregar al menos un artículo",
+      icon: "error",
+      backdrop: `
+        rgba(0,0,0,0.5)
+    url("/images/carroVacio.png")
+    bottom left
+    no-repeat
+  `,
+      confirmButtonText: "Ok",
+    });
+  } else {
+    Swal.fire({
+      title: "¿Estás seguro?",
+      text: "Una vez finalizada la compra, no podrás volver a modificarla",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      cancelButtonText: "Cancelar",
+      confirmButtonText: "Finalizar compra",
+      showClass: {
+        popup: "animate__animated animate__fadeInDown",
+      },
+      hideClass: {
+        popup: "animate__animated animate__fadeOutUp",
+      },
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          title: "Compra finalizada",
+          text: "Gracias por comprar en nuestra tienda",
+          icon: "success",
+          confirmButtonText: "Ok",
+          backdrop: `
+        rgba(0,0,0,0.5)
+    url("/images/compraFinalizada.png")
+    bottom left
+    no-repeat
+  `,
+        });
+      }
+    });
+  }
+}
+
+function proceda() {
+  Swal.fire({
+    title: "proceda",
+    text: "proceda",
+    imageUrl: "images/proceda.jpg",
+    imageWidth: 400,
+    imageHeight: 250,
+    imageAlt: "Custom image",
+  });
+}
+
+
+function eliminarArticulo(posicion) {
+product.articles.splice(posicion, 1);
+compras(product.articles)
+total()
+
 }

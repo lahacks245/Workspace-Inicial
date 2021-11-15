@@ -15,7 +15,7 @@
   <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/album/">
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 	<link href=" https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
   <link
   rel="stylesheet"
@@ -84,7 +84,7 @@
         <div class="container">
           <div class="block-heading">
             <h2>Mi carrito</h2>
-            <p>tengo que ver que escribir acá pero seguramente algo voy a poner equisde</p>
+            <p>Aquí podrás ver los artículos que previamente seleccionaste</p>
           </div>
           <div class="content">
             <div class="row">
@@ -109,7 +109,7 @@
                       
                       
                       <label class="radio">
-                          <input type="radio" name="r" value="1" checked>
+                          <input type="radio" name="r" value="1" >
                           <span>Premium</span>
                       </label><br>
                       <label class="radio">
@@ -117,18 +117,158 @@
                           <span>Express</span>
                       </label><br>
                       <label class="radio">
-                          <input type="radio" name="r" value="3">
+                          <input type="radio" name="r" value="3"checked >
                           <span>Standard</span>
                       </label>
                   </div>
                   
                   <!-- boton envío -->
                   <button type="button" onclick="alertaEnvío()"class="btn btn-primary">¿Cómo calcular el envío?</button>
+                  <button type="button" id="botonPago" data-toggle="modal" data-target="#modalPago" class="btn btn-warning btn-lg btn-block">Forma de pago</button>
 
-                  <button type="button"  class="btn btn-primary btn-lg btn-block">Finalizar
+                  <button type="button" onclick="finalizarCompra()" class="btn btn-primary btn-lg btn-block">Finalizar
                     compra</button>
 
 
+<!-- Modal -->
+<div class="modal fade" id="modalPago" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+     
+
+   
+   
+    
+   
+      <div class="card ">
+        <div class="card-header">
+            <div class="bg-white shadow-sm pt-4 pl-2 pr-2 pb-2">
+                <!-- metodos -->
+                <ul role="tablist" class="nav bg-light nav-pills rounded nav-fill mb-3">
+                    <li class="nav-item"> <a data-toggle="pill" href="#credit-card" class="nav-link active "> <i class="fas fa-credit-card mr-2"></i> Tarjeta de crédito </a> </li>
+                   
+                    <li class="nav-item"> <a data-toggle="pill" href="#net-banking" class="nav-link "> <i class="fas fa-mobile-alt mr-2"></i> Transferencia bancaria </a> </li>
+
+
+                </ul>
+            </div> <!-- fin -->
+            <!-- tarjetas de credito contenido -->
+            <div class="tab-content">
+                <!-- tarjetas info-->
+                <div id="credit-card" class="tab-pane fade show active pt-3">
+                    <form role="form" onsubmit="event.preventDefault()">
+                        <div class="form-group"> <label for="username">
+                                <h6>Nombre completo del titular de la tarjeta</h6>
+                            </label> <input type="text" name="username" placeholder="Nombre completo" required class="form-control "> </div>
+                        <div class="form-group"> <label for="cardNumber">
+                                <h6>Número de tarjeta</h6>
+                            </label>
+                            <div class="input-group"> <input type="text" name="cardNumber" placeholder="Número de tarjeta" class="form-control " required>
+                                <div class="input-group-append"> <span class="input-group-text text-muted"> <i class="fab fa-cc-visa mx-1"></i> <i class="fab fa-cc-mastercard mx-1"></i> <i class="fab fa-cc-amex mx-1"></i> </span> </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-8">
+                                <div class="form-group"> <label><span class="hidden-xs">
+                                            <h6>Fecha de vencimiento</h6>
+                                        </span></label>
+                                    <div class="input-group"> <input type="number" placeholder="MM" name="" class="form-control" required> <input type="number" placeholder="YY" name="" class="form-control" required> </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group mb-4"> <label data-toggle="tooltip" title="El código de 3 digitos detrás de tu tarjeta">
+                                        <h6>CVV <i class="fa fa-question-circle d-inline"></i></h6>
+                                    </label> <input type="text" required class="form-control"> </div>
+                            </div>
+                          
+                              <div class="total"> 
+                                <label class="row"  >
+                                      <h3>Total a pagar:<label id="totalPago"></label></h3> 
+                                      
+                                  </label> 
+                                  
+                                  </div>
+                          
+                        </div>
+                        <div class="card-footer"> <button onclick="finalizarCompra()"  type="button" id="botonDePago" class="subscribe btn btn-primary btn-block shadow-sm"> Confirmar pago </button>
+                    </form>
+                </div>
+            </div> <!-- fin -->
+            <!-- info de paypal(por si incorporo un botón)-->
+            <div id="paypal" class="tab-pane fade pt-3">
+                <h6 class="pb-2">Seleccioná el tipo de tu cuenta PayPal</h6>
+                <div class="form-group "> <label class="radio-inline"> <input type="radio" name="optradio" checked> Domestica </label> <label class="radio-inline"> <input type="radio" name="optradio" class="ml-5">Internacional</label></div>
+                <p> <button type="button" class="btn btn-primary "><i class="fab fa-paypal mr-2"></i> Ingresar a mi cuenta PayPal</button> </p>
+                <p class="text-muted"> Nota: Después de hacer clic en el botón, se le dirigirá a una página segura para el pago. Después de completar el proceso de pago, será redirigido al sitio web para ver los detalles de su pedido. </p>
+            </div> <!-- fin -->
+            <!-- transferencia bancaria info -->
+            <div id="net-banking" class="tab-pane fade pt-3">
+                <div class="form-group "> <label for="Select Your Bank">
+                        <h6>Seleccioná tu banco</h6>
+                    </label> <select class="form-control" id="ccmonth">
+                        <option value="" selected disabled>--Por favor,seleccione su banco--</option>
+                        <option>BROU</option>
+                        <option>SANTANDER</option>
+                        <option>SCOTIABANK</option>
+                        <option>BBVA</option>
+                        <option>HSBC</option>
+                        <option>CITI</option>
+                        <option>BANDES</option>
+                        <option>BNA</option>
+                        <option>BAPRO</option>
+                        <option>HERITAGE</option>
+                        <option>BHU</option>
+
+                    </select> 
+                  </div>
+                 
+
+                  <div id="cuenta-alias" >
+                    <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1"><b>Alias</b>(opcional)</span>
+                      </div>
+                      <input type="text" class="form-control" placeholder="Alias"  aria-describedby="basic-addon1">
+                    </div>
+  
+  
+  
+                    <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1"><b>Nº</b></span>
+                      </div>
+                      <input type="number" class="form-control" min="0" placeholder="Número de cuenta"  aria-describedby="basic-addon1">
+                    </div>
+
+                  </div>
+                  
+
+                <div class="form-group">
+                    <p> <button type="button" onclick="proceda()" class="btn btn-primary "><i class="fas fa-mobile-alt mr-2"></i> Proceder al págo</button> </p>
+                </div>
+                <p class="text-muted">Nota: Después de hacer clic en el botón, se le dirigirá a una página segura para el pago. Después de completar el proceso de pago, será redirigido al sitio web para ver los detalles de su pedido. </p>
+            </div> <!-- fin -->
+            <!-- fin -->
+        </div>
+
+
+
+      
+      
+
+
+
+
+
+
+
+
+
+
+      
+    </div>
+  </div>
+</div>
 
 
                 </div>

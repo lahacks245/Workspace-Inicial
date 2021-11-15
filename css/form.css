@@ -86,8 +86,7 @@ ul li .check::before {
   top: 5px;
 	left: 5px;
   margin: auto;
-	transition: background 0.25s linear;
-	-webkit-transition: background 0.25s linear;
+	
 }
 
 input[type=radio]:checked ~ .check {

@@ -140,7 +140,7 @@ footer p {
 }
 .lds-ring div {
   box-sizing: border-box;
-  display: block;
+  display: 
   position: absolute;
   width: 51px;
   height: 51px;
@@ -536,22 +536,31 @@ button:active {
 .custom-file-input:active::before {
   background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
 }
-#progress_bar {
-  margin: 10px 0;
-  padding: 3px;
-  border: 1px solid #000;
-  font-size: 14px;
-  clear: both;
-  opacity: 0;
-  -moz-transition: opacity 1s linear;
-  -o-transition: opacity 1s linear;
-  -webkit-transition: opacity 1s linear;
+
+
+.total{
+  padding-left: 27%;
 }
-#progress_bar.loading {
-  opacity: 1.0;
+
+.icono{
+  font-size: 40px;
+  color: #000000;
+  padding-left: 100%;
+  margin-top: -14%;
 }
-#progress_bar .percent {
-  background-color: #99ccff;
-  height: auto;
-  width: 0;
+.icono:hover{
+  color: #f52525;
+}
+
+.precio{
+  font-size: 23px;
+}
+
+
+
+@media (max-width: 600px) {
+  .icono {
+    font-size: 40px; color: #000000; padding-left: 46%; margin-top: 1%;
+  }
+
 }
