@@ -276,7 +276,7 @@ function finalizarCompra() {
       icon: "error",
       backdrop: `
         rgba(0,0,0,0.5)
-    url("/images/carroVacio.png")
+    url("https://lahacks245.github.io/Workspace-Inicial/images/carroVacio.png")
     bottom left
     no-repeat
   `,
@@ -307,7 +307,7 @@ function finalizarCompra() {
           confirmButtonText: "Ok",
           backdrop: `
         rgba(0,0,0,0.5)
-    url("/images/compraFinalizada.png")
+    url("https://lahacks245.github.io/Workspace-Inicial/images/compraFinalizada.png")
     bottom left
     no-repeat
   `,
@@ -321,7 +321,7 @@ function proceda() {
   Swal.fire({
     title: "proceda",
     text: "proceda",
-    imageUrl: "images/proceda.jpg",
+    imageUrl: "https://lahacks245.github.io/Workspace-Inicial/images/proceda.jpg",
     imageWidth: 400,
     imageHeight: 250,
     imageAlt: "Custom image",
